@@ -15,18 +15,26 @@ public class CucumberTestRunner extends AndroidJUnitRunner {
 
     @Override
     public void onCreate(final Bundle bundle) {
-        String tags = BuildConfig.TEST_TAGS;
-        if (!tags.isEmpty()) {
-            bundle.putString(CUCUMBER_TAGS_KEY, tags.replaceAll("\\s", ""));
-        }
+        parseTestTags(bundle);
+        parseTestScenario(bundle);
+        instrumentationCore.create(bundle);
+        super.onCreate(bundle);
+    }
 
+    private void parseTestScenario(Bundle bundle) {
         String scenario = BuildConfig.TEST_SCENARIO;
         if (!scenario.isEmpty()) {
             scenario = scenario.replaceAll(" ", "\\\\s");
             bundle.putString(CUCUMBER_SCENARIO_KEY, scenario);
         }
-        instrumentationCore.create(bundle);
-        super.onCreate(bundle);
+    }
+
+    private void parseTestTags(Bundle bundle) {
+        String tags = BuildConfig.TEST_TAGS;
+        if (!tags.isEmpty()) {
+            tags = tags.replaceAll("\\s", "");
+            bundle.putString(CUCUMBER_TAGS_KEY, tags);
+        }
     }
 
     @Override

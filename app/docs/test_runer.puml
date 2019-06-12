@@ -5,8 +5,13 @@ if (with -Pcucumber?) then (yes)
   :CucumberTestRunner;
   fork
     :onCreate();
+    :parseTestTags;
+    :parseTestScenario;
+    :CucumberInstrumentationCore.create();
   fork again
     :onStart();
+    :waitForIdleSync;
+    :CucumberInstrumentationCore.start();
   end fork
 else (no)
   :AndroidJUnitRunner;
