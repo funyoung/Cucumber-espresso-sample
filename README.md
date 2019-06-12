@@ -9,3 +9,6 @@ also run ./gradlew connectedCheck -Pcucumber -Ptags="@smoke" to run all smoke BD
 ### To run individual feature test execute : 
 
 ./gradlew connectedCheck -Pcucumber -Pscenario="Successful login"
+
+
+branch another-sample imports anthoer java (legancy project)[https://github.com/a11n/android-cucumber-espresso.git]
