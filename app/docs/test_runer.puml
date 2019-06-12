@@ -1,0 +1,16 @@
+@startuml
+start
+:$./gradlew connectedCheck;
+if (with -Pcucumber?) then (yes)
+  :CucumberTestRunner;
+  fork
+    :onCreate();
+  fork again
+    :onStart();
+  end fork
+else (no)
+  :AndroidJUnitRunner;
+endif
+
+stop
+@enduml
