@@ -30,9 +30,9 @@ public class MainSteps {
 
   @After
   public void tearDown() {
-    // todo: java call kotlin methods
     // todo: study about ActivityFinisher
-    // ActivityFinisher.finishOpenActivities(); // Required for test scenarios with multiple activities or scenarios with more cases
+    // java call kotlin non static method of companion class
+     ActivityFinisher.Companion.finishOpenActivities(); // Required for test scenarios with multiple activities or scenarios with more cases
   }
 
   @Given("^I've launched \"([^\"]*)\"$")
