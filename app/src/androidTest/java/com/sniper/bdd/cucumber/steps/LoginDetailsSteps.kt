@@ -1,9 +1,9 @@
 package com.sniper.bdd.cucumber.steps
 
-import android.support.test.rule.ActivityTestRule
+import android.app.Activity
 import com.sniper.bdd.LoginActivity
+import com.sniper.bdd.cucumber.espresso.BaseScreenRobot
 import com.sniper.bdd.cucumber.espresso.login.LoginScreenRobot
-import com.sniper.bdd.utils.ActivityFinisher
 import cucumber.api.java.After
 import cucumber.api.java.Before
 import cucumber.api.java.en.And
@@ -11,11 +11,11 @@ import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
 
-class LoginDetailsSteps {
+class LoginDetailsSteps : BaseSteps() {
 
     private val robot = LoginScreenRobot()
 
-    private val activityRule = ActivityTestRule(LoginActivity::class.java, false, false)
+//    private val activityRule = ActivityTestRule(LoginActivity::class.java, false, false)
 
     @Before
     fun setup() {
@@ -24,12 +24,13 @@ class LoginDetailsSteps {
 
     @After
     fun tearDown() {
-        ActivityFinisher.finishOpenActivities() // Required for test scenarios with multiple activities or scenarios with more cases
+        finishOpenActivities() // Required for test scenarios with multiple activities or scenarios with more cases
     }
 
     @Given("^I start the application$")
     fun i_start_app() {
-        robot.launchLoginScreen(activityRule)
+        //robot.launchLoginScreen(activityRule)
+        launchScreen(robot, LoginActivity::class.java)
     }
 
     @When("^I click email field$")
@@ -66,5 +67,4 @@ class LoginDetailsSteps {
     fun i_expect_to_see_successful_login_message() {
         robot.isSuccessfulLogin()
     }
-
 }
